@@ -1,116 +1,20 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Startbootstrap-grayscale by ironsummitmedia</title>
+---
+layout: default
+---
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1 class="header">Startbootstrap-grayscale</h1>
-        <p class="header"></p>
+<div class="home">
 
-        <ul>
-          <li class="download"><a class="buttons" href="https://github.com/ironsummitmedia/startbootstrap-grayscale/zipball/master">Download ZIP</a></li>
-          <li class="download"><a class="buttons" href="https://github.com/ironsummitmedia/startbootstrap-grayscale/tarball/master">Download TAR</a></li>
-          <li><a class="buttons github" href="https://github.com/ironsummitmedia/startbootstrap-grayscale">View On GitHub</a></li>
-        </ul>
+  <h1>Posts</h1>
 
-        <p class="header">This project is maintained by <a class="header name" href="https://github.com/ironsummitmedia">ironsummitmedia</a></p>
+  <ul class="posts">
+    {% for post in site.posts %}
+      <li>
+        <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
 
+  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
 
-      </header>
-      <section>
-       <em><strong>1.9.3, 2.0, 3.0 Only - UNIX Only - What should I do if I was unable to upgrade </strong><strong>successfully to version 3.0 and I don’t have a standard, full system backup, just the </strong><strong>backup made during the upgrade?</strong></em>
-
-You should have made a complete backup of your Post.Office system before upgrading (as instructed in the README.TXT and RELNOTES.TXT files). If you did not make a standard, full system backup as instructed, you will need to rely on the partial backup which was made during the upgrade.
-
-Please be aware, however, that your mailbox directories and the executable directory were <em>not</em> included in the partial backup. We are performing mailbox conversions during this upgrade and the half-converted directory can not be used. Part of these instructions will be to run a utility that will take your converted mailbox directories and files and restore them to the prior versions structure. The half-converted executable directory also cannot be used; it should be replaced with your prior version of the executables which can be downloaded directly from our ftp site.
-
-After your system is restored and working, please contact  for assistance with the 3.0 upgrade.
-
-<strong>Restoration Instructions for Solaris</strong><strong>:</strong>
-
-To restore your system with your prior version of Post.Office, you will need to:
-<ol>
- 	<li>Shutdown Post.Office
-&lt;/opt&gt;/Post.Office shutdown</li>
- 	<li>For safety’s sake please copy the existing, partially modified versions of the mailbox directories and the executables directory to another location before attempting restoration.
--r /opt/post.office /tmp/POexecBad3.0
--r /var/spool/mailbox /tmp/POmailboxBad3.0
--r /var/spool/post.office /tmp/POspoolBad3.0</li>
- 	<li>Remove the 3.0 executables with by typing: pkgrm SCOM-MTA</li>
- 	<li>Copy the half upgraded versions of your account files. Then replace the half upgraded version of your MTA-Accounts file with the backup of the file made during upgrade. If you attempted to run the upgrade more that once, make sure to restore the "first" backup made so that you restore the working prior version of your MTA-Accounts database file:
-
-cd &lt;/var/spool/&gt;Post.Office/config
-
-cp MTA-Accounts MTA-Accounts.bad3.0
-cp BTAccounts.i BTAccounts.i.bad3.0
-cp BTAccounts.a BTAccounts.a.bad3.0
-cp MTA-Accounts.backup.yymmddhhmm MTA-Accounts
-
-<em>Note: You might run into ownership or permission problems if you didn’t back up or </em><em>restore with the original permissions. It’s possible that executing a </em><em>chown</em><em> on the copied </em><em>files and assigning ownership to your post.office user (mta) will be enough. (The</em><em>standard permissions for UNIX are listed elsewhere in this FAQ for your review.)</em></li>
- 	<li>Copy the half upgraded versions of your configuration files. Then replace the half upgraded version of your configuration files with the backup of the files made during the upgrade. You might have old ones there that you DON"T want to use, so only use the *.backup files with today’s date:
-
-cd &lt;/var/spool/&gt;Post.Office/config
-
-For each *.backup file with <em>today’s</em> date and time:
-
-cp &lt;ServerModuleName&gt; &lt;ServerModuleName&gt;.bad3.0
-cp &lt;ServerModuleName&gt;.backup &lt;ServerModuleName&gt;
-
-<em>Note: You might run into ownership or permission problems if you didn’t back up or </em><em>restore with the original permissions. It’s possible that executing a </em><em>chown</em><em> on the copied </em><em>files and assigning ownership to your post.office user (mta) will be enough. (The</em><em>standard permissions for UNIX are listed elsewhere in this FAQ for your review.)</em></li>
- 	<li>We have written a perl script to help convert your mailbox directories from the new 3.0 structure to the old structure. (Note: You can download perl from the ftp site ntperl.hip.com.) Download from our ftp site a utility called unbucket.pl and run it using the following instructions:
-<ul>
- 	<li>Type: ftp ftp.software.com</li>
- 	<li>Log in as anonymous.</li>
- 	<li>Use your e-mail address as the password.</li>
- 	<li>Change directory to the location of the utility by typing
-cd ftp\postoffice\archive\&lt;version no.&gt;\unix\&lt;yourplatform&gt;\utilities\</li>
- 	<li>Download the executables in binary mode by typing:
-bin
-get unbucket.pl</li>
- 	<li>Move the unbucket.pl utility to your mailbox directory.</li>
- 	<li>Run the command by typing the following:
-cd winnt\system32\spool\post.office\mailbox
-perl unbucket.pl</li>
- 	<li>The bucketed mailboxes will be copied back up to the unbucketed structure.</li>
-</ul>
-</li>
- 	<li>Download your prior version of Post.Office for Solaris (1.9.3 or 2.0) from our web site to a temporary directory.</li>
- 	<li>Uncompress the file you downloaded and expand the resulting archive file to create the Post.Office package (SCOM-MTA) by typing:
-
-cd /var/tmp/PO&lt;version&gt;
-uncompress &lt;packagename&gt;.tar.Z
-tar xvpf &lt;packagename&gt;.tar</li>
- 	<li>From the location in which you stored it, install the package by typing:
-pkgadd -d . SCOM-MTA
-
-<strong>Caution:</strong> The upgrade program will ask if you wish to change configuration information. You should answer "no".</li>
- 	<li>If you are currently using Program Delivery, you may need to re-enable that feature by typing:
-chmod u+s /opt/post.office/local/Program-Deliver
-rm /opt/post.office/trusted/NO-PROGRAM-DELIVERIES</li>
- 	<li>Run the Post.Office configuration program:
-1.9.3: /opt/post.office/Install
-2.0: /opt/post.office/Setup</li>
-</ol>
-This will restore your account information and upgrade your executables back to your prior version of Post.Office.
-
-After your system is restored and working, please contact . We will evaluate your problem and then assist you with the 3.0 upgrade. </section>
-      <footer>
-
-      </footer>
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		
-  </body>
-</html>
+</div>
