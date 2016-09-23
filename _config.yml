@@ -10,7 +10,7 @@ description: "Cloud and Internet of Things research Lab at lead by Prof. Maheswa
 # Team names, titles and social links
 
 team:
-  - role: professors
+  - role: professor
     people: 
     - name: Muthucumaru Maheswaran
       info: More info could go here...
@@ -20,7 +20,7 @@ team:
           url: http://www.cs.mcgill.ca/~maheswar/
 
 
-  - role: phds
+  - role: phd
     people:
     - name: Ben Yu
     - name: Kininyiruchi Echomgbe
@@ -36,9 +36,9 @@ team:
       - name: Robert Wenger
       - name: Xiru Zhu
 
-  - role: undergraduates
+  - role: undergraduate
     people:
-      - name: Abi
+      - name: Abhijit Singh
         info: Taking 3 Masters classes
 
 
